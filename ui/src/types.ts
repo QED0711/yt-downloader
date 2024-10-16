@@ -3,5 +3,7 @@ export type DownloadFormat = {
     format_id: string,
     note: string,
     resolution: string,
-    pixelCount: number
+    pixelCount: number,
+    audio_codec: string,
+    filesize: number | null
 }

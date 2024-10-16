@@ -47,16 +47,15 @@ function App() {
   const { state } = useSpiccatoState<mainState>(mainManager, [mainManager.paths.videoUrl, mainManager.paths.analyzing, mainManager.paths.formats])
   const formatRef = useRef<HTMLDivElement>(null);
   const maxHeight = useSizeFormatContainer(formatRef, state.formats);
-  console.log(maxHeight)
+
   return (
     <main className='w-screen h-screen p-12 overflow-none bg-neutral-700'>
       <div className=''>
-        <input
-          className='block w-[95%] md:w-2/3 p-2 mx-auto text-center text-4xl shadow-md shadow-gray-500 rounded-sm'
-          type="text"
+        <textarea
+          className='block w-[95%] md:w-2/3 p-2 mx-auto resize-y text-left text-2xl shadow-md shadow-gray-500 rounded-sm'
           value={state.videoUrl}
           onChange={(e) => { mainManager.setters.setVideoUrl(e.target.value) }}
-        />
+        ></textarea>
 
         <button
           className='block w-fit py-2 px-4 my-8 mx-auto text-2xl bg-neutral-100 rounded-sm shadow-md shadow-neutral-900 disabled:opacity-20 disabled:cursor-not-allowed'

@@ -1,9 +1,10 @@
 from pydantic import BaseModel
+from typing import List
 
 class VideoUrl(BaseModel):
-    url: str
+    urls: List[str]
 
 class DownloadReq(BaseModel):
-    url: str
-    ext: str
+    urls: List[str]
+    format_id: str
     audio_book: bool

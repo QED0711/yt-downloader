@@ -10,8 +10,9 @@ const api = axios.create({
 
 export default {
     getVideoInformation(this: MainInstance): Promise<Record<string, any> | null>  {
+        const urls = this.getters.getUrlsFromUrlString();
         return new Promise(resolve => {
-            api.post("/info", { url: this.state.videoUrl })
+            api.post("/info", { urls })
                 .then(response => {
                     let formats = response.data?.formats;
                     if(formats) {
@@ -38,9 +39,10 @@ export default {
         })
     },
 
-    download(this: MainInstance, ext: string, audioBook: boolean){
+    download(this: MainInstance, format_id: string, audioBook: boolean){
+        const urls = this.getters.getUrlsFromUrlString()
         return new Promise(resolve => {
-            api.post("/download", {url: this.state.videoUrl, ext, audio_book: audioBook})
+            api.post("/download", {urls, format_id, audio_book: audioBook})
                 .then(response => {
                     resolve(response.data);
                 })

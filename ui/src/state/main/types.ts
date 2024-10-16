@@ -16,6 +16,7 @@ export type MainState = {
 // GETTERS
 type CustomGetters = {
     // place custom getter method type signatures here
+    getUrlsFromUrlString: () => string[];
 };
 export type MainGetters = GetterMethods<MainState, CustomGetters>;
 
@@ -39,7 +40,7 @@ export type MyCustomNamespace = {
 */
 export type ApiNamespace = {
     getVideoInformation: () => Promise<Record<string, any> | null>;
-    download: (ext: string, audioBook: boolean) => Promise<any>;
+    download: (format_id: string, audioBook: boolean) => Promise<any>;
 }
 
 // EXTENSIONS

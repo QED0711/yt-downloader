@@ -1,7 +1,12 @@
+import { MainInstance } from "./types";
 
 const getters = {
 
-    // your getters here...
+    getUrlsFromUrlString(this: MainInstance): string[] {
+        return this.state.videoUrl.split(/[,\s\n]/g)
+            .map((url: string) => url.trim())
+            .filter((url: string) => Boolean(url.length))
+    }
 
 }
 
