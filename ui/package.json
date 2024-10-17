@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 3000 --host",
-    "build": "tsc -b && vite build",
+    "build": "vite build && mv dist ../backend",
     "lint": "eslint .",
     "preview": "vite preview",
     "create-state": "node node_modules/spiccato/cli.js --typescript --root=src/state"

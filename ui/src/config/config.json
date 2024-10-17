@@ -2,6 +2,7 @@
     "api": {
         "protocol": "http",
         "host": null,
-        "port": 8000
+        "port": 8000,
+        "route": "/api"
     }
 }

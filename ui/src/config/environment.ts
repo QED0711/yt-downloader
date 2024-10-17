@@ -11,5 +11,6 @@ export const MODE = import.meta.env.MODE;
 const API_PROTOCOL = config.api?.protocol ?? Protocol.HTTP;
 const API_HOST = config.api?.host ?? window.location.hostname;
 const API_PORT = config.api?.port ?? 8000;
+const API_ROUTE = config.api?.route ?? "";
 
-export const API_BASE_URL = `${API_PROTOCOL}://${API_HOST}:${API_PORT}`
+export const API_BASE_URL = `${API_PROTOCOL}://${API_HOST}:${API_PORT}${API_ROUTE}`

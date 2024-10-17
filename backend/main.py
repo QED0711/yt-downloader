@@ -1,5 +1,6 @@
 import os, traceback, subprocess, pdb
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import yt_dlp
 from yt_dlp.utils import sanitize_filename
@@ -16,19 +17,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/", StaticFiles(directory="dist", html=True), name="ui")
+
 # Define a directory to save downloaded files
-DOWNLOAD_DIRECTORY = "downloads"
+DOWNLOAD_DIRECTORY = "downloads" 
 os.makedirs(DOWNLOAD_DIRECTORY, exist_ok=True)
 
 AUDIO_EXTENSIONS = ['mp3', 'wav', 'flac', 'm4a', 'aac', 'ogg', 'opus']
 VIDEO_EXTENSIONS = ['mp4', 'webm', 'mkv', 'avi', 'flv', 'mov']
 
-@app.get("/")
-async def test():
-    # make return prebuilt ui files
-    return "HELLO WORLD"
 
-@app.post("/info")
+@app.post("/api/info")
 async def introspect_video(video: VideoUrl):
     try:
         # Set up yt-dlp options for introspection
@@ -76,7 +75,7 @@ async def introspect_video(video: VideoUrl):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@app.post("/download")
+@app.post("/api/download")
 async def download(request: DownloadReq):
     urls = request.urls
     format_id = request.format_id  # Get the format_id from the request
