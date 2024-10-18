@@ -17,8 +17,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/", StaticFiles(directory="dist", html=True), name="ui")
-
 # Define a directory to save downloaded files
 DOWNLOAD_DIRECTORY = "downloads" 
 os.makedirs(DOWNLOAD_DIRECTORY, exist_ok=True)
@@ -164,6 +162,8 @@ async def download(request: DownloadReq):
 
 
 
+# Static file server
+app.mount("/", StaticFiles(directory="dist", html=True), name="ui")
 
 if __name__ == "__main__":
     import uvicorn
