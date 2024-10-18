@@ -55,6 +55,7 @@ function App() {
           className='block w-[95%] md:w-2/3 p-2 mx-auto resize-y text-left text-2xl shadow-md shadow-gray-500 rounded-sm'
           value={state.videoUrl}
           onChange={(e) => { mainManager.setters.setVideoUrl(e.target.value) }}
+          placeholder='Paste Youtube Links Here (separate by space of new line)'
         ></textarea>
 
         <button
